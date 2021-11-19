@@ -1,6 +1,7 @@
 package com.example.opengles_test
 
 import android.graphics.BitmapFactory
+import android.graphics.PixelFormat
 import android.opengl.GLSurfaceView
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
@@ -17,16 +18,21 @@ class MainActivity : FragmentActivity() {
         val squareTexture = SquareTexture()
         val circleTexture = CircleTexture()
         val cubeTexture = CubeTexture()
-        val imageTexture = ImageTexture()
-        imageTexture.bitmap = BitmapFactory.decodeResource(resources, R.drawable.nn_bg_gift_receive_fail)
+        val imageTexture = RedPacketRainTexture()
+        imageTexture.bitmap = BitmapFactory.decodeResource(resources, R.mipmap.nn_ic_rain_red_packet)
 
-        val render = BaseRender(cubeTexture)
+        val render = BaseRender(imageTexture)
         gl_surface_view.apply {
+            // 设置背景透明
+            //setEGLConfigChooser(8, 8, 8, 8, 16, 0)
+            //holder.setFormat(PixelFormat.TRANSLUCENT)
+            //setZOrderOnTop(true)
+
             setEGLContextClientVersion(2)
             setRenderer(render)
-            renderMode = GLSurfaceView.RENDERMODE_WHEN_DIRTY
+            //renderMode = GLSurfaceView.RENDERMODE_WHEN_DIRTY
+            renderMode = GLSurfaceView.RENDERMODE_CONTINUOUSLY
         }
-
 
         btn_change_position.setOnClickListener {
             gl_surface_view.apply {

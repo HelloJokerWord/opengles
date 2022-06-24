@@ -7,6 +7,7 @@ import com.example.opengles_test.IBaseTexture
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.FloatBuffer
+import javax.microedition.khronos.opengles.GL
 
 /**
  * CreateBy:Joker
@@ -46,7 +47,7 @@ class TriangleTexture : IBaseTexture {
     private var triangleCoors = floatArrayOf()
 
     private val color = floatArrayOf(
-        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f, //RGBA
     )
 
     override fun onSurfaceCreated() {
@@ -70,7 +71,6 @@ class TriangleTexture : IBaseTexture {
 
         mColorHandle = GLES20.glGetUniformLocation(glProgram, "vColor")
         GLES20.glUniform4fv(mColorHandle, 1, color, 0)
-
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, (triangleCoors.size / GROUP_COUNT))
 
         GLES20.glDisableVertexAttribArray(mPositionHandle)

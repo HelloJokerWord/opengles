@@ -126,8 +126,8 @@ class RedPacketRainTexture : IBaseTexture {
         GLES20.glVertexAttribPointer(gAPointSizeHandle, 1, GLES20.GL_FLOAT, false, 0, mGLSize)
         GLES20.glEnableVertexAttribArray(gAPointSizeHandle)
 
+        ////设置BLEND颜色，结合glBlendFuncSeparate或glBlendFunc使用
         GLES20.glEnable(GLES20.GL_BLEND)
-
         GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA)
 
         if (mTextureId != OpenGLESUtils.NO_TEXTURE) {
